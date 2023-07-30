@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { checkWinner } from './utils/utils';
 import AppLayout from './app-layout';
 import { store } from './store';
+import { RESET_BOARD, updateBoard } from './actions';
 
 export default function App() {
 	const [board, setBoard] = useState(store.getState().board);
 
 	function resetGame() {
-		store.dispatch({ type: 'RESET_BOARD' });
+		store.dispatch(RESET_BOARD);
 		setBoard(store.getState().board);
 	}
 
@@ -16,10 +17,7 @@ export default function App() {
 			return;
 		}
 
-		store.dispatch({
-			type: 'UPDATE_BOARD',
-			payload: { index },
-		});
+		store.dispatch(updateBoard(index));
 
 		setBoard(store.getState().board);
 	}
