@@ -1,0 +1,14 @@
+.App {
+    margin-top: 100px;
+    text-align: center;
+  }
+  
+  .ResetBtn {
+    width: 140px;
+      height: 40px;
+      font-size: 20px;
+      color: white;
+      background-color: #000000;
+      border-radius: 5px;
+      cursor: pointer;
+  }
