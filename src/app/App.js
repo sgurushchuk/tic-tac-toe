@@ -8,7 +8,6 @@ export default function App() {
 
 	function resetGame() {
 		store.dispatch({ type: 'RESET_BOARD' });
-		store.dispatch({ type: 'RESET_PLAYER' });
 		setBoard(store.getState().board);
 	}
 
@@ -17,15 +16,12 @@ export default function App() {
 			return;
 		}
 
-		const player = store.getState().player;
-
 		store.dispatch({
 			type: 'UPDATE_BOARD',
-			payload: { index, player },
+			payload: { index },
 		});
 
 		setBoard(store.getState().board);
-		store.dispatch({ type: 'UPDATE_PlAYER' });
 	}
 
 	return <AppLayout props={{ board, handleClick, resetGame }} />;
