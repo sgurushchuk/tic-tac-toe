@@ -1,25 +1,21 @@
-import { useState } from 'react';
 import { checkWinner } from './utils/utils';
 import AppLayout from './app-layout';
-import { store } from './store';
 import { RESET_BOARD, updateBoard } from './actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function App() {
-	const [board, setBoard] = useState(store.getState().board);
+	const board = useSelector((state) => state.board);
+	const dispatch = useDispatch();
 
 	function resetGame() {
-		store.dispatch(RESET_BOARD);
-		setBoard(store.getState().board);
+		dispatch(RESET_BOARD);
 	}
 
 	function handleClick(index) {
-		if (store.getState().board[index] || checkWinner(store.getState().board)) {
+		if (board[index] || checkWinner(board)) {
 			return;
 		}
-
-		store.dispatch(updateBoard(index));
-
-		setBoard(store.getState().board);
+		dispatch(updateBoard(index));
 	}
 
 	return <AppLayout props={{ board, handleClick, resetGame }} />;
