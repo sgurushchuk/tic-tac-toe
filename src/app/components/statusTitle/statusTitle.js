@@ -1,18 +1,12 @@
 import StatusTitleLayout from './statusTitle-layout';
 import { checkWinner } from '../../utils/utils';
-import { store } from '../../store';
+import { useSelector } from 'react-redux';
+import { selectPlayer, selectBoard } from '../../selectors';
 
-export default function StatusTitle({ board }) {
-	function renderStatus() {
-		const winner = checkWinner(board);
-		if (winner) {
-			return `Winner: ${winner}`;
-		} else if (board.every((cell) => cell !== null)) {
-			return "It's a draw!";
-		} else {
-			return `Next player: ${store.getState().player ? 'X' : 'O'}`;
-		}
-	}
+export default function StatusTitle() {
+	const board = useSelector(selectBoard);
+	const player = useSelector(selectPlayer);
+	const winner = checkWinner(board);
 
-	return <StatusTitleLayout renderStatus={renderStatus} />;
+	return <StatusTitleLayout props={{ board, player, winner }} />;
 }

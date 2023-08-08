@@ -1,11 +1,21 @@
-import styles from './board.module.css'
+import styles from './board.module.css';
 
-export default function BoardLayout({board, onClick}) {
-    return (
-        <div className={styles.board}>
-            {board.map((cell, index) => {
-                return <button key={index} onClick={() => onClick(index)} className={styles.cell}>{cell}</button>
-            })}
-        </div>
-    )
+export default function BoardLayout({ props }) {
+	const { board, handleClick } = props;
+
+	return (
+		<div className={styles.board}>
+			{board.map((cell, index) => {
+				return (
+					<button
+						key={index}
+						onClick={() => handleClick(index)}
+						className={styles.cell}
+					>
+						{cell}
+					</button>
+				);
+			})}
+		</div>
+	);
 }

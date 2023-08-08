@@ -1,23 +1,29 @@
-import { checkWinner } from './utils/utils';
-import AppLayout from './app-layout';
-import { RESET_BOARD, updateBoard } from './actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectBoard } from './selectors/selectBoard';
+// import AppLayout from './app-layout';
 
-export default function App() {
-	const board = useSelector(selectBoard);
+// export default function App() {
+// 	return <AppLayout />;
+// }
+
+import Board from './components/board/board';
+import StatusTitle from './components/statusTitle/statusTitle';
+import styles from './App.module.css';
+import { RESET_BOARD } from './actions';
+import { useDispatch } from 'react-redux';
+
+export default function AppLayout() {
 	const dispatch = useDispatch();
 
 	function resetGame() {
 		dispatch(RESET_BOARD);
 	}
 
-	function handleClick(index) {
-		if (board[index] || checkWinner(board)) {
-			return;
-		}
-		dispatch(updateBoard(index));
-	}
-
-	return <AppLayout props={{ board, handleClick, resetGame }} />;
+	return (
+		<div className={styles.App}>
+			<StatusTitle />
+			<Board />
+			<button className={styles.ResetBtn} onClick={resetGame}>
+				Reset game
+			</button>
+		</div>
+	);
 }
