@@ -1,9 +1,3 @@
-// import AppLayout from './app-layout';
-
-// export default function App() {
-// 	return <AppLayout />;
-// }
-
 import Board from './components/board/board';
 import StatusTitle from './components/statusTitle/statusTitle';
 import styles from './App.module.css';
