@@ -15,5 +15,5 @@ export default function Board() {
 		dispatch(updateBoard(index));
 	}
 
-	return <BoardLayout props={{ board, handleClick }} />;
+	return <BoardLayout handleClick={handleClick} />;
 }
