@@ -5,9 +5,9 @@ import { checkWinner, checkDraw } from '../../utils/utils';
 
 export default function StatusTitleLayout() {
 	const board = useSelector(selectBoard);
+	const player = useSelector(selectPlayer);
 	const winner = checkWinner(board);
 	const isDraw = checkDraw(board);
-	const player = useSelector(selectPlayer);
 
 	return (
 		<h1 className={styles.statusTitle}>
